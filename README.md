@@ -12,10 +12,10 @@ This repository contains the work of detection of cancerous skin cells on human 
 
 ### Resources Materials
 https://en.wikipedia.org/wiki/Histogram_of_oriented_gradients </br>
-https://en.wikipedia.org/wiki/Color_histogram
+https://en.wikipedia.org/wiki/Color_histogram </br>
 
 OpenCV Basic tutorials </br>
-https://opencv.org/
+https://opencv.org/ </br>
 https://www.youtube.com/watch?v=WQeoO7MI0Bs (First timers)
 
 OpenCV Application </br>
