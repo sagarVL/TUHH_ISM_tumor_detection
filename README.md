@@ -23,5 +23,4 @@ https://www.learnopencv.com/shape-matching-using-hu-moments-c-python/ </br>
 https://www.learnopencv.com/find-center-of-blob-centroid-using-opencv-cpp-python/ </br>
 https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_histograms/py_histogram_begins/py_histogram_begins.html
 
-Styling guide:
-https://www.python.org/dev/peps/pep-0008/#function-annotations
+Styling guide:www.python.org/dev/peps/pep-0008
