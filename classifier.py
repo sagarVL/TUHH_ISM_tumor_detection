@@ -60,7 +60,7 @@ Y_Train = training_labels[Y_labels]
 Y_Test = test_labels[Y_labels]
 
 #Logistic Regression
-# model = LogisticRegression(max_iter=800, pen)
+# model = LogisticRegression(max_iter=800)
 
 # model.fit(X_Train[X_labels],Y_Train.values.ravel())
 
@@ -72,7 +72,7 @@ Y_Test = test_labels[Y_labels]
 # accuracy = accuracy_score(Y_Test, Y_Pred)
 # print('Accuracy: {:.2f}'.format(accuracy))
 
-# print(classification_report(Y_Test, Y_Pred, labels =[1,2,3,4,5,6,7,8]))
+# print(classification_report(Y_Test, Y_Pred, labels =[1,2,3,4,5,6,7,8,9]))
 
 
 #Support Vector Machines
@@ -81,5 +81,5 @@ classifier_svm = svm.SVC(probability=True, gamma='auto', tol=0.01, cache_size=20
 classifier_svm.fit(X_Train[X_labels],Y_Train.values.ravel())
 Y_Pred_svm = classifier_svm.predict(X_Test[X_labels])
 
-print(classification_report(Y_Test, Y_Pred_svm, labels =[1,2,3,4,5,6,7,8]))
+print(classification_report(Y_Test, Y_Pred_svm, labels =[1,2,3,4,5,6,7,8,9]))
 
