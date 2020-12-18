@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import tensorflow as tf
 
 
 def hair_removal(image: str, inpaint_radius: int = 40):
@@ -43,6 +44,13 @@ def create_circular_mask(image: str, radius: int = 350):
     # Create circular mask Bit-wise conjunction
     masked_data = cv2.bitwise_and(img, img, mask=circle_img)
     return masked_data
+
+
+def create_circular_mask_1(image):
+    img_array = tf.keras.preprocessing.image.img_to_array(image)
+    cropped_img_array = tf.image.central_crop(img_array, 0.85)
+    cropped_img = tf.keras.preprocessing.image.array_to_img(cropped_img_array)
+    return cropped_img
 
 
 def change_contrast(image: str, cliplimit: float):
