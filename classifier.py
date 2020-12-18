@@ -11,6 +11,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import f1_score
 from sklearn.metrics import classification_report
 
+from sklearn.neighbors import KNeighborsClassifier
+
+
 
 #X
 training_data = pd.read_csv('D:\Education\College\Semester V\ISM\Project\csv_features\Features_training_15122020.csv')
@@ -59,8 +62,8 @@ X_Test = pd.concat([test_data['imageID'], X_Test], axis =1)
 Y_Train = training_labels[Y_labels]
 Y_Test = test_labels[Y_labels]
 
-#Logistic Regression
-# model = LogisticRegression(max_iter=800, pen)
+# #Logistic Regression
+# model = LogisticRegression(max_iter=800)
 
 # model.fit(X_Train[X_labels],Y_Train.values.ravel())
 
@@ -72,14 +75,35 @@ Y_Test = test_labels[Y_labels]
 # accuracy = accuracy_score(Y_Test, Y_Pred)
 # print('Accuracy: {:.2f}'.format(accuracy))
 
-# print(classification_report(Y_Test, Y_Pred, labels =[1,2,3,4,5,6,7,8]))
+# print(classification_report(Y_Test, Y_Pred, labels =[1,2,3,4,5,6,7,8,9]))
 
 
-#Support Vector Machines
-classifier_svm = svm.SVC(probability=True, gamma='auto', tol=0.01, cache_size=200, class_weight='balanced',
-                            random_state=0, decision_function_shape='ovr', C=1000.0, kernel='linear')
-classifier_svm.fit(X_Train[X_labels],Y_Train.values.ravel())
-Y_Pred_svm = classifier_svm.predict(X_Test[X_labels])
+# #Support Vector Machines
+# classifier_svm = svm.SVC()
+# classifier_svm.fit(X_Train[X_labels],Y_Train.values.ravel())
 
-print(classification_report(Y_Test, Y_Pred_svm, labels =[1,2,3,4,5,6,7,8]))
+# Y_Pred_svm = classifier_svm.predict(X_Test[X_labels])
 
+# print(classification_report(Y_Test, Y_Pred_svm, labels =[1,2,3,4,5,6,7,8]))
+
+
+#KNearestNeighbours
+neigh = KNeighborsClassifier (n_neighbors=17, weights = 'distance', algorithm = 'ball_tree', leaf_size =100 )
+Y_pred_KNN = neigh.fit(X_Train[X_labels],Y_Train.values.ravel()).predict((X_Test[X_labels]))
+
+accuracy = accuracy_score(Y_Test, Y_pred_KNN)
+print('Accuracy: {:.2f}'.format(accuracy))
+print(classification_report(Y_Test, Y_pred_KNN, labels =[1,2,3,4,5,6,7,8,9]))
+#Accuracy 60%
+
+from sklearn.ensemble import RandomForestClassifier
+
+#Random Forest
+clf = RandomForestClassifier(max_depth=7, random_state=0, n_estimators=1000, max_features='sqrt', class_weight='balanced')
+clf.fit(X_Train[X_labels],Y_Train.values.ravel())
+Y_pred_RF = clf.predict((X_Test[X_labels]))
+
+accuracy = accuracy_score(Y_Test, Y_pred_RF)
+print('Accuracy: {:.2f}'.format(accuracy))
+
+print(classification_report(Y_Test, Y_pred_RF, labels =[1,2,3,4,5,6,7,8,9]))
