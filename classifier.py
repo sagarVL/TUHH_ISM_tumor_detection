@@ -1,18 +1,14 @@
-from sklearn.ensemble import RandomForestClassifier
 import os
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
-from sklearn import preprocessing, svm
-from sklearn.metrics import accuracy_score, confusion_matrix
-from sklearn.tree import DecisionTreeClassifier
 import csv
 import numpy as np
 import matplotlib.pyplot as plt
-import pandas as pd
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.linear_model import LogisticRegression
+from sklearn import preprocessing, svm
+from sklearn.metrics import accuracy_score, confusion_matrix, f1_score, classification_report
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import f1_score
-from sklearn.metrics import classification_report
-
 from sklearn.neighbors import KNeighborsClassifier
 
 
@@ -66,32 +62,35 @@ X_Test = pd.concat([test_data['imageID'], X_Test], axis=1)
 Y_Train = training_labels[Y_labels]
 Y_Test = test_labels[Y_labels]
 
-# #Logistic Regression
-# model = LogisticRegression(max_iter=800)
+# Logistic Regression
+""" model = LogisticRegression(max_iter=800)
 
-# model.fit(X_Train[X_labels],Y_Train.values.ravel())
+model.fit(X_Train[X_labels], Y_Train.values.ravel())
 
-# Y_Pred = model.predict(X_Test[X_labels])
+Y_Pred = model.predict(X_Test[X_labels])
 
 # # count_misclassified = (Y_Test != Y_Pred).sum()
 # # print('Misclassified samples: {}'.format(count_misclassified))
 
-# accuracy = accuracy_score(Y_Test, Y_Pred)
-# print('Accuracy: {:.2f}'.format(accuracy))
+accuracy = accuracy_score(Y_Test, Y_Pred)
+print('Accuracy: {:.2f}'.format(accuracy))
 
-# print(classification_report(Y_Test, Y_Pred, labels =[1,2,3,4,5,6,7,8,9]))
+print(classification_report(Y_Test, Y_Pred,
+                            labels=[1, 2, 3, 4, 5, 6, 7, 8, 9],zero_division=0)) """
 
 
 # #Support Vector Machines
-# classifier_svm = svm.SVC()
-# classifier_svm.fit(X_Train[X_labels],Y_Train.values.ravel())
+classifier_svm = svm.SVC()
+classifier_svm.fit(X_Train[X_labels], Y_Train.values.ravel())
 
-# Y_Pred_svm = classifier_svm.predict(X_Test[X_labels])
+Y_Pred_svm = classifier_svm.predict(X_Test[X_labels])
+accuracy = accuracy_score(Y_Test, Y_Pred_svm)
+print('Accuracy: {:.2f}'.format(accuracy))
+print(classification_report(Y_Test, Y_Pred_svm,
+                            labels=[1, 2, 3, 4, 5, 6, 7, 8, 9], zero_division=0))
 
-# print(classification_report(Y_Test, Y_Pred_svm, labels =[1,2,3,4,5,6,7,8,9]))
 
-
-# KNearestNeighbours
+""" # KNearestNeighbours
 neigh = KNeighborsClassifier(
     n_neighbors=17, weights='distance', algorithm='ball_tree', leaf_size=100)
 Y_pred_KNN = neigh.fit(
@@ -101,7 +100,7 @@ accuracy = accuracy_score(Y_Test, Y_pred_KNN)
 print('Accuracy: {:.2f}'.format(accuracy))
 print(classification_report(Y_Test, Y_pred_KNN,
                             labels=[1, 2, 3, 4, 5, 6, 7, 8, 9], zero_division=0))
-# Accuracy 60%
+# Accuracy 60% """
 
 
 """ # Random Forest
@@ -114,5 +113,5 @@ accuracy = accuracy_score(Y_Test, Y_pred_RF)
 print('Accuracy: {:.2f}'.format(accuracy))
 
 print(classification_report(Y_Test, Y_pred_RF,
-                            labels=[1, 2, 3, 4, 5, 6, 7, 8, 9]))
+                            labels=[1, 2, 3, 4, 5, 6, 7, 8, 9],zero_division=0))
  """
