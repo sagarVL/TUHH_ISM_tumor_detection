@@ -147,16 +147,16 @@ def CoOccuranceMatrix(imageSelected):
 
 
 
-def image_feature_extraction(begin, end):
+def image_feature_extraction(begin,end):
   
   with open("D:\Documents\GitHub\TUHH_ISM_tumor_detection\csv_features\\features_training_18122020.csv","a",newline='') as csvfile:
       writer =csv.writer(csvfile,delimiter=',', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
       writer.writerow(['imageID','mean-R','skew-R','std-R','entropy-R','mean-G','skew-G','std-G','entropy-G','mean-B','skew-B','std-B','entropy-B',
                        't1','t2','t3','t4','t5','t6','t7','t8','t9','t10','t11','t12','t13','t14','t15','t16',
                         'hu1','hu2','hu3','hu4','hu5','hu6','hu7',
-                        'm00','m10','m01','m20','m11','m02','m30','m21','m12','m03','assymmetric','diameter', 'border'])
+                        'm00','m10','m01','m20','m11','m02','m30','m21','m12','m03','diameter', 'border'])
   
-  reader = pd.read_csv("D:\Documents\GitHub\TUHH_ISM_tumor_detection\csv_features\groundtruth_train.csv", skiprows=begin ,nrows=end)
+  reader = pd.read_csv("D:\Documents\GitHub\TUHH_ISM_tumor_detection\csv_features\\temp.csv", skiprows=begin ,nrows=end)
   
   for row in range(len(reader)):
       idno = reader.values[row][0]
@@ -189,7 +189,7 @@ def image_feature_extraction(begin, end):
         colorhist_data = colorHistogram(constrst_change_img)
 
         #Assymetry
-        assymetry_data =  assymetry(constrst_change_img)
+        #assymetry_data =  assymetry(constrst_change_img)
 
         #Diameter
 
@@ -220,7 +220,7 @@ def image_feature_extraction(begin, end):
           texture_data[8],texture_data[9],texture_data[10],texture_data[11],texture_data[12],texture_data[13],texture_data[14],texture_data[15],
           hu_moments_data[0],hu_moments_data[1],hu_moments_data[2],hu_moments_data[3],hu_moments_data[4],hu_moments_data[5],hu_moments_data[6],
           moments_data[0],moments_data[1],moments_data[2],moments_data[3],moments_data[4],moments_data[5],moments_data[6],
-          moments_data[7],moments_data[8],moments_data[9], assymetry_data, diameter_data, border_data])
+          moments_data[7],moments_data[8],moments_data[9],diameter_data, border_data])
 
         
     
@@ -268,5 +268,40 @@ def image_feature_extraction(begin, end):
         print('no file found:'+'processed_imageISIC_'+idno )
 
 if __name__ == '__main__':
-  image_feature_extraction(0,5)
+  one = multiprocessing.Process(target=image_feature_extraction, args=[0,3])
+  one.start()
+
+  two = multiprocessing.Process(target=image_feature_extraction, args=[3,3]) 
+  two.start()
+
+  three = multiprocessing.Process(target=image_feature_extraction, args=[6,3]) 
+  three.start()
+
+  four = multiprocessing.Process(target=image_feature_extraction, args=[9,3]) 
+  four.start()
+
+  five = multiprocessing.Process(target=image_feature_extraction, args=[12,3]) 
+  five.start()
+
+  six = multiprocessing.Process(target=image_feature_extraction, args=[15,3]) 
+  six.start()
+
+  seven = multiprocessing.Process(target=image_feature_extraction, args=[18,4]) 
+  seven.start()
+
+  eigth = multiprocessing.Process(target=image_feature_extraction, args=[22,4]) 
+  eigth.start()
+
+
+  nine = multiprocessing.Process(target=image_feature_extraction, args=[26,4]) 
+  nine.start()
+   
+   
+  ten = multiprocessing.Process(target=image_feature_extraction, args=[30,5]) 
+  ten.start()
+
+  
+  eleven = multiprocessing.Process(target=image_feature_extraction, args=[35,7]) 
+  eleven.start()
+  
 
